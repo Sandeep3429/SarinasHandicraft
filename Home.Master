@@ -1,0 +1,227 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Home.master.cs" Inherits="SarinasHandicraft.Home" %>
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <title>Sarina's Handicraft - Dashboard</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, shrink-to-fit=no" name="viewport" />
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- CSS Files -->
+    <link href="/Assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/Assets/css/paper-dashboard.css?v=2.0.1" rel="stylesheet" />
+    <link href="/Assets/css/home.css" rel="stylesheet" />
+
+    <style>
+        body {
+            font-family: 'Karla', sans-serif;
+            background: #fdf6f0;
+            color: #46312e;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: #fff;
+            box-shadow: 2px 0 12px rgba(0,0,0,0.05);
+        }
+        .sidebar .logo {
+            padding: 20px;
+            text-align: center;
+        }
+        .sidebar .logo img {
+            max-width: 50px;
+            margin-bottom: 8px;
+        }
+        .sidebar .logo-normal {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #503b75;
+            line-height: 1.4;
+        }
+        .sidebar-wrapper .nav li a {
+            color: #46312e;
+            font-weight: 500;
+            padding: 12px 18px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .sidebar-wrapper .nav li.active > a,
+        .sidebar-wrapper .nav li a:hover {
+            background: #f4e8ff;
+            color: #503b75;
+            font-weight: 600;
+        }
+        .sidebar-wrapper .nav i {
+            margin-right: 8px;
+            color: #a46f50;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: #fff !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            padding: 10px 20px;
+        }
+        .navbar .navbar-nav .nav-link {
+            color: #46312e;
+            font-weight: 500;
+            margin: 0 6px;
+            transition: color 0.2s ease;
+        }
+        .navbar .navbar-nav .nav-link:hover {
+            color: #a46f50;
+        }
+
+        /* Cart Badge */
+        .cart-basket {
+            position: absolute;
+            top: -6px;
+            right: -10px;
+            background: #a46f50;
+            color: #fff;
+            font-size: 0.75rem;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            z-index: 1000;
+        }
+
+        /* Dropdown Menu */
+        .nav-item.dropdown .dropdown-menu {
+            border-radius: 12px;
+            padding: 10px 0;
+            min-width: 150px;
+        }
+        .nav-item.dropdown .dropdown-item:hover {
+            background: #f4e8ff;
+            color: #503b75;
+        }
+
+        /* Footer */
+        footer.footer {
+            background: #fff;
+            padding: 15px;
+            font-size: 0.85rem;
+            color: #7a6c64;
+            border-top: 1px solid #eee;
+        }
+        footer .footer-nav ul li a {
+            color: #503b75;
+            font-weight: 500;
+        }
+        footer .footer-nav ul li a:hover {
+            color: #a46f50;
+        }
+    </style>
+
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:HiddenField ID="UserId" runat="server" />
+        <asp:HiddenField ID="Role" runat="server" />
+        <asp:HiddenField ID="Name" runat="server" />
+
+        <div class="wrapper">
+            <!-- Sidebar -->
+            <div class="sidebar" data-color="white" data-active-color="danger">
+                <div class="logo">
+                    <a href="/home.aspx" class="simple-text logo-mini">
+                        <img src="/Assets/images/logo.PNG" alt="Logo" />
+                    </a>
+                    <a href="/home.aspx" class="simple-text logo-normal">
+                        Sarina's <br /> Handicraft Store
+                    </a>
+                </div>
+                <div class="sidebar-wrapper">
+                    <ul class="nav">
+                        <li><a href="/home.aspx"><i class="nc-icon nc-bank"></i><p>Home</p></a></li>
+                        <li><a href="/order.aspx"><i class="nc-icon nc-single-02"></i><p>My Orders</p></a></li>
+                        <li><a href="/feedback.aspx"><i class="nc-icon nc-caps-small"></i><p>My Feedback</p></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Main Panel -->
+            <div class="main-panel">
+                <!-- Navbar -->
+                <nav class="navbar navbar-expand-lg fixed-top">
+                    <div class="container-fluid">
+                        <span class="navbar-brand">Welcome <asp:Literal ID="LoginUserName" runat="server"></asp:Literal></span>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" 
+                                aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-bar">&#9776;</span>
+                        </button>
+                        <div class="collapse navbar-collapse justify-content-end" id="navigation">
+                            <ul class="navbar-nav align-items-center">
+                                <!-- Cart -->
+                                <li class="nav-item">
+                                    <a class="nav-link position-relative" href="/cart.aspx">
+                                        <i class="fa fa-shopping-cart fa-lg" style="color:#503b75;"></i>
+                                        <asp:Label ID="CartCount" runat="server" CssClass="cart-basket" Text="0"></asp:Label>
+                                    </a>
+                                </li>
+                                <!-- Profile/Settings -->
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown">
+                                        <i class="fa fa-cog fa-lg" style="color:#503b75;"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right shadow rounded">
+                                        <a class="dropdown-item" href="/profile.aspx">My Profile</a>
+                                        <asp:LinkButton CssClass="dropdown-item" OnClick="Logout" Text="Logout" runat="server"></asp:LinkButton>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <!-- End Navbar -->
+
+                <!-- Content -->
+                <div class="content mt-5 pt-4">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+                </div>
+
+                <!-- Footer -->
+                <footer class="footer">
+                    <div class="container-fluid d-flex justify-content-between">
+                        <nav class="footer-nav">
+                            <ul class="list-inline mb-0">
+                                <li class="list-inline-item"><a href="/">Blog</a></li>
+                                <li class="list-inline-item"><a href="/">Licenses</a></li>
+                            </ul>
+                        </nav>
+                        <div class="credits">
+                            © <%: DateTime.Now.Year %> Sarina's Handicraft Store
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </form>
+
+    <!-- JS -->
+    <script src="/Assets/js/jquery-3.4.1.min.js"></script>
+    <script src="/Assets/js/bootstrap.min.js"></script>
+    <script src="/Assets/js/paper-dashboard.min.js?v=2.0.1"></script>
+    <script src="/Assets/js/demo.js"></script>
+
+    <script>
+        $(function () {
+            $('.sidebar-wrapper li').each(function () {
+                if ($(this).children('a').attr('href') == window.location.pathname) {
+                    $(this).addClass('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Default.master.cs" Inherits="SarinasHandicraft.Default" %>
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sarina’s Handicraft Store</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="~/Assets/favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="~/Assets/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Assets/favicon/favicon-16x16.png" />
+    <link rel="manifest" href="~/Assets/favicon/manifest.json" />
+    <link rel="mask-icon" href="~/Assets/favicon/safari-pinned-tab.svg" color="#503b75" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+        body {
+            font-family: 'Karla', sans-serif;
+            background: linear-gradient(135deg, #fdf6f0, #fae5d3);
+            margin: 0;
+            color: #46312e;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #fff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: #503b75 !important;
+            font-size: 1.5rem;
+        }
+        .navbar-nav .nav-link {
+            color: #46312e;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s ease;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #a46f50;
+        }
+
+        /* Main content */
+        #contentWrapper {
+            max-width: 1140px;
+            margin: 80px auto;
+            padding: 20px;
+        }
+
+        /* Headings */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            color: #503b75;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background-color: #a46f50;
+            border-color: #a46f50;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover, .btn-primary:focus {
+            background-color: #503b75;
+            border-color: #503b75;
+            box-shadow: 0 0 10px rgba(80, 59, 117, 0.4);
+        }
+
+        /* Form Inputs */
+        input, select, textarea {
+            border: 1px solid #d6c9ba;
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 1rem;
+            color: #46312e;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: #503b75;
+            box-shadow: 0 0 8px rgba(80, 59, 117, 0.3);
+            outline: none;
+        }
+
+        /* Footer */
+        footer {
+            background: #fff;
+            text-align: center;
+            padding: 20px 10px;
+            border-top: 1px solid #e6dfd8;
+            color: #7a6c64;
+            font-size: 0.9rem;
+            margin-top: 60px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            #contentWrapper {
+                margin: 60px 15px;
+                padding: 15px;
+            }
+        }
+    </style>
+
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server" class="h-100">
+
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="~/">Sarina’s Handicraft</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" 
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon">&#9776;</span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" href="~/">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="~/products.aspx">Products</a></li>
+                        <li class="nav-item"><a class="nav-link" href="~/about.aspx">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="~/contact.aspx">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="~/login.aspx">Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div id="contentWrapper" role="main" aria-label="Main content area">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            © <%: DateTime.Now.Year %> Sarina’s Handicraft Store. All rights reserved.
+        </footer>
+
+    </form>
+
+    <!-- JS, JQuery and Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+</body>
+</html>
